@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 260 20% 98%;
+    --foreground: 254 30% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 254 30% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 254 30% 20%;
+
+    --primary: 265 70% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 315 70% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --tertiary: 190 90% 60%;
+    --tertiary-foreground: 0 0% 100%;
+
+    --muted: 260 20% 90%;
+    --muted-foreground: 254 30% 40%;
+
+    --accent: 315 70% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 260 20% 85%;
+    --input: 260 20% 85%;
+    --ring: 265 70% 60%;
+
+    --radius: 0.8rem;
+
+    --chart-1: 265 70% 60%; /* Purple */
+    --chart-2: 315 70% 60%; /* Pink */
+    --chart-3: 190 90% 60%; /* Cyan */
+    --chart-4: 43 90% 60%;  /* Yellow */
+    --chart-5: 0 80% 60%;   /* Red */
+  }
+
+  .dark {
+    --background: 254 30% 10%;
+    --foreground: 0 0% 95%;
+
+    --card: 254 30% 15%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 254 30% 15%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 265 70% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 315 70% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --tertiary: 190 90% 60%;
+    --tertiary-foreground: 0 0% 100%;
+
+    --muted: 254 30% 20%;
+    --muted-foreground: 0 0% 80%;
+
+    --accent: 315 70% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 254 30% 25%;
+    --input: 254 30% 25%;
+    --ring: 265 70% 60%;
+
+    --chart-1: 265 70% 60%; /* Purple */
+    --chart-2: 315 70% 60%; /* Pink */
+    --chart-3: 190 90% 60%; /* Cyan */
+    --chart-4: 43 90% 60%;  /* Yellow */
+    --chart-5: 0 80% 60%;   /* Red */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-montserrat;
+    background-image:
+      radial-gradient(circle at 50% 0%, hsl(var(--primary) / 0.08), transparent 25%),
+      radial-gradient(circle at 100% 50%, hsl(var(--secondary) / 0.08), transparent 25%),
+      radial-gradient(circle at 0% 80%, hsl(var(--tertiary) / 0.08), transparent 25%);
+    background-attachment: fixed;
+  }
+  h1, h2, h3, h4 {
+    @apply font-bungee;
+  }
+}
+
+@layer components {
+  .game-card {
+    @apply relative overflow-hidden rounded-2xl bg-white p-1 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-[1.02];
+    background: linear-gradient(135deg, hsl(var(--card)), hsl(var(--card)));
+    background-size: 100% 100%;
+    background-position: 0% 0%;
+  }
+
+  .game-card:before {
+    @apply absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300;
+    content: '';
+    background: linear-gradient(135deg,
+      hsl(var(--primary) / 0.8),
+      hsl(var(--secondary) / 0.8)
+    );
+    z-index: -1;
+  }
+
+  .game-card:hover:before {
+    @apply opacity-30;
+  }
+
+  .glass-panel {
+    @apply rounded-xl bg-white/20 backdrop-blur-lg border border-white/20;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-tertiary;
+  }
+
+  /* Animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out 2s infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
